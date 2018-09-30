@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('title')
     {{--Hierin gaan we de lege placeholder aanpassen voor alleen deze pagina--}}
     Welcome
