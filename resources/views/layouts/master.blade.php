@@ -2,8 +2,7 @@
 <html>
 <head>
     <title>@yield('title')</title>
-    {{--yield is een placeholder, omdat dit de basis layout is verandert dit gebied voor elke pagina
-    en dus passen we die per pagina aan--}}
+    {{--yield is a placeholder, we can access and change this field from every page that extends the master--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{--Hierin gaan we de lege placeholder aanpassen voor alleen deze pagina--}}
+    {{--Entering data into the empty placeholder from master.blade--}}
     Welcome
 @endsection
 
