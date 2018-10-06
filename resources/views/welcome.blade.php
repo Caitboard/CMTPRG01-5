@@ -16,6 +16,8 @@
         </div>
     </div>
     @endif
+    {{--With this if statement we check all the fields in the sign up form and display errors
+    based on our validation in the UserController--}}
     <div class="row">
         <div class="col-md-6">
             <h3>Sign Up</h3>
