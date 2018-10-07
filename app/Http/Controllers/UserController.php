@@ -39,7 +39,7 @@ class UserController extends Controller
 //        Use save to write to the database
 
         Auth::login($user);
-//      user logs in after signing up
+//      user logs in directly after signing up
         return redirect()->route('dashboard');
     }
     public function postSignIn(Request $request)
