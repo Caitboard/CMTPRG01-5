@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email|unique:users',
-//            validating email => ' this field cannnot be empty | checking if the email really is an email address using
+//            validating email => ' this field cannot be empty | checking if the email really is an email address using
 //            laravels built-in feature | validating if this email does not already exist in the database table 'users' '
             'first_name' => 'required|max:50',
 //            validating first name => 'checking if the field is not empty | max characters of 50'
