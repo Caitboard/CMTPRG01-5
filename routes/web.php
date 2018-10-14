@@ -39,4 +39,10 @@ Route::get('/dashboard', [
 //])->middleware('auth');
 ;
 
+Route::post('/createmovie', [
+    'uses' => 'MovieController@movieCreateMovie',
+    'as' => 'movie.create'
+]);
+
+
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

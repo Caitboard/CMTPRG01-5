@@ -18,7 +18,7 @@ class MovieController extends Controller
         $movie->grade = $request['grade'];
         $movie->review = $request['review'];
         $movie->image = $request['image'];
-        $request->user()->posts()->save($movie);
+        $request->user()->movies()->save($movie);
 //        saves this post as related to the currently authenticated user
         return redirect()->route('dashboard');
     }

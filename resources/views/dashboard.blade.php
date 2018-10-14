@@ -5,7 +5,7 @@
         <div class="col-md-6 col-md-offset-3">
             <header>
                 <h3>Heb je een film bekeken?</h3>
-                <form action="">
+                <form action="{{ route('movie.create') }}" method="post">
                     <div class="form-group">
                         <label for="title">Titel</label>
                         <input class="form-control" type="text" name="title" id="title" value="{{ Request::old('title') }}">
@@ -36,9 +36,11 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Upload een foto(optioneel)</label>
+                        <input class="form-control" type="image" name="image" id="image">
 
                     </div>
                     <button type="submit" class="btn btn-primary">Film toevoegen</button>
+                    {{ csrf_field() }}
                 </form>
             </header>
         </div>
