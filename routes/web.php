@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
 Route::get('/signin', function() {
     return view('signin');
@@ -35,7 +35,8 @@ Route::post('/signin', [
 
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
-    'as' => 'dashboard'
-]);
+    'as' => 'dashboard'])
+//])->middleware('auth');
+;
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
