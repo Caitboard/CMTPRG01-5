@@ -1,0 +1,24 @@
+.new-movie {
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.new-movie header {
+    margin-bottom: 20px;
+}
+.movies header {
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.movies .movie {
+    padding-left: 10px;
+    border-left: 3px solid #a21b24;
+    margin-bottom: 30px;
+}
+
+.movies .movie .info {
+    color: #aaa;
+    font-style: italic;
+
+}

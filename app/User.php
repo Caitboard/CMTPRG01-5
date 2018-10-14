@@ -9,4 +9,8 @@ class User extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
 //    this authenticates a user
+    public function movies ()
+    {
+        return $this->hasMany('App\Movie');
+    }
 }

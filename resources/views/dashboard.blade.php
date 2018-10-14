@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <section class="row new-post">
+    <section class="row new-movie">
         <div class="col-md-6 col-md-offset-3">
             <header>
                 <h3>Heb je een film bekeken?</h3>
@@ -41,6 +41,36 @@
                     <button type="submit" class="btn btn-primary">Film toevoegen</button>
                 </form>
             </header>
+        </div>
+    </section>
+    <section class="row movies">
+        <div class="col-md-6 col-md-offset-3">
+            <header><h3>Welke films hebben je vrienden bekeken?</h3></header>
+            <article class="movie">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur atque autem deserunt dolor
+                    dolorem eius hic laborum laudantium mollitia nostrum numquam optio, possimus quae quam, quia
+                    quibusdam quis sunt?</p>
+                <div class="info">Posted by x on x-x-x</div>
+                <div class="interaction">
+                    <a href="#">Bekijken</a> |
+                    <a href="#">Edit</a> |
+                    <a href="#">Delete</a>
+                </div>
+            </article>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <header><h3>Welke films hebben je vrienden bekeken?</h3></header>
+            <article class="post">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur atque autem deserunt dolor
+                    dolorem eius hic laborum laudantium mollitia nostrum numquam optio, possimus quae quam, quia
+                    quibusdam quis sunt?</p>
+                <div class="info">Posted by x on x-x-x</div>
+                <div class="interaction">
+                    <a href="#">Bekijken</a> |
+                    <a href="#">Edit</a> |
+                    <a href="#">Delete</a>
+                </div>
+            </article>
         </div>
     </section>
 
