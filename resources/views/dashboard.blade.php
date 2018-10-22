@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Upload een foto(optioneel)</label>
-                        <input class="form-control" type="image" name="image" id="image">
+                        <input class="form-control" type="file" name="image" id="image">
 
                     </div>
                     <button type="submit" class="btn btn-primary">Film toevoegen</button>
@@ -54,6 +54,7 @@
                     quibusdam quis sunt?</p>
                 <div class="info">Posted by x on x-x-x</div>
                 <div class="interaction">
+                    <a href="#">Ik wil deze film ook zien!</a> |
                     <a href="#">Bekijken</a> |
                     <a href="#">Edit</a> |
                     <a href="#">Delete</a>
@@ -68,6 +69,7 @@
                     quibusdam quis sunt?</p>
                 <div class="info">Posted by x on x-x-x</div>
                 <div class="interaction">
+                    <a href="#">Ik wil deze film ook zien!</a> |
                     <a href="#">Bekijken</a> |
                     <a href="#">Edit</a> |
                     <a href="#">Delete</a>
