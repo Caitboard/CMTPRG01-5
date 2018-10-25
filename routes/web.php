@@ -11,17 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('login');
-
-Route::get('/signin', function() {
-    return view('signin');
-});
-
-Route::get('/signup', function() {
-    return view('signup');
-});
+Route::get('/', 'PagesController@getWelcome')->name('login');
+Route::get('/signin', 'PagesController@getSignIn');
+Route::get('/signup', 'PagesController@getSignUp');
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
@@ -40,7 +32,7 @@ Route::get('/dashboard', [
 ;
 
 Route::post('/createmovie', [
-    'uses' => 'MovieController@movieCreateMovie',
+    'uses' => 'MovieController@postCreateMovie',
     'as' => 'movie.create'
 ]);
 

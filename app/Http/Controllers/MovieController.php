@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
-    public function movieCreateMovie(Request $request)
+    public function postCreateMovie(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
