@@ -31,10 +31,8 @@ Route::get('/dashboard', [
 //])->middleware('auth');
 ;
 
-Route::post('/createmovie', [
-    'uses' => 'MovieController@postCreateMovie',
-    'as' => 'movie.create'
-]);
+Route::resource('movies', 'MovieController');
+//Makes a route for every part of CRUD in the MovieController
 
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

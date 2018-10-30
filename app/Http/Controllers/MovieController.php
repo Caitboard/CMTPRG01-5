@@ -4,31 +4,48 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use Illuminate\Http\Request;
-//Gain access to the fields in the views with request
 use Illuminate\Support\Facades\Storage;
-
-
 
 class MovieController extends Controller
 {
-    public function postCreateMovie(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('dashboard');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
-            'date' => 'required|date',
+            'date' => 'required|date|before:tomorrow',
             'grade' => 'required|digits_between:1,11',
             'review' => 'max:1000|sometimes',
-            'image' => 'sometimes|image'
         ]);
         $title = $request['title'];
         $date = $request['date'];
         $grade = $request['grade'];
         $review = $request['review'];
-        $image = $request->file('image');
-        $filename = time() . '.' . $image->getClientOriginalExtension(); //get extension in the file (jpg, png etc)
-        if ($image) {
-            Storage::disk('local')->put($filename, File::get($image));
-        }
 
         $movie = new Movie();
         $movie->title = $title;
@@ -36,16 +53,56 @@ class MovieController extends Controller
         $movie->grade = $grade;
         $movie->review = $review;
 
-//        if ($request->hasFile('image')) {
-//            $image = $request->file('image');
-//            $filename = time() . '.' . $image->getClientOriginalExtension(); //get extension in the file (jpg, png etc)
-//            $location = public_path('img/' . $filename); //set the location for the image (public/img)
-//            Image::make($image)->resize(400, 400)->save($location); //create image object, resize the image, save it in public/img
-//            $movie->image = $filename; //set image column equal to $filename
-//        }
-
         $request->user()->movies()->save($movie);
-//        saves this post as related to the currently authenticated user
-        return redirect()->route('dashboard');
+
+        return redirect()->route('movies.show', $movie->id);
+
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+
 }

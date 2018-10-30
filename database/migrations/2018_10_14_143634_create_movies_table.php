@@ -19,8 +19,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->date('date');
             $table->string('grade');
-            $table->text('review');
-            $table->binary('image');
+            $table->text('review')->nullable();
             $table->integer('user_id');
         });
     }

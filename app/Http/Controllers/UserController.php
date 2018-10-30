@@ -54,7 +54,7 @@ class UserController extends Controller
            return redirect()->route('dashboard');
        }
        return redirect()->back();
-//       If the login in succesful we redirect to the dashboard
+//       If the login in successful we redirect to the dashboard
 //       if it's not, we go back to the welcome page, not logged in
     }
 }
