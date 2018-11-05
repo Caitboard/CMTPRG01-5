@@ -8,6 +8,17 @@
 @endsection
 
 @section('content')
+    @if(count($errors) > 0)
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <section class="row new-movie">
         <div class="col-md-6 col-md-offset-3">
             <header>
@@ -15,11 +26,11 @@
                 <form action="{{ route('movies.store') }}" method="post">
                     <div class="form-group">
                         <label for="title">Titel</label>
-                        <input class="form-control" type="text" name="title" id="title" value="{{ Request::old('title') }}">
+                        <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ Request::old('title') }}">
                     </div>
                     <div class="form-group">
                         <label for="title">Wanneer heb je de film bekeken?</label>
-                        <input id="datepicker" width="276" class="form-control" name="date"/>
+                        <input id="datepicker" width="276" class="form-control {{ $errors->has('date') ? 'is-invalid' : '' }}" name="date"/>
                         <script>
                             $('#datepicker').datepicker({
                                 uiLibrary: 'bootstrap4',
@@ -30,11 +41,11 @@
 
                     <div class="form-group">
                         <label for="grade">Welk cijfer geef je de film?</label>
-                        <input class="form-control" type="number" name="grade" id="grade" value="{{ Request::old('grade') }}">
+                        <input class="form-control {{ $errors->has('grade') ? 'is-invalid' : '' }}" type="number" name="grade" id="grade" value="{{ Request::old('grade') }}">
                     </div>
                     <div class="form-group">
                         <label for="review">Schrijf een review(optioneel)</label>
-                        <textarea class="form-control" name="review" id="review" value="{{ Request::old('review') }}"></textarea>
+                        <textarea class="form-control {{ $errors->has('review') ? 'is-invalid' : '' }}" name="review" id="review" value="{{ Request::old('review') }}"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Film toevoegen</button>
                     {{ csrf_field() }}

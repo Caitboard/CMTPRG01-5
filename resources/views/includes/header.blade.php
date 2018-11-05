@@ -14,10 +14,10 @@
                         Hi {{ Auth::user()->first_name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {{--<a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>--}}
-                        <a class="dropdown-item" href="{{ route('logout') }}">Log-out</a>
+                        <a class="dropdown-item" href="{{ route('dashboard') }}">Nieuwe film toevoegen</a>
+                        <a class="dropdown-item" href="#">Mijn pagina</a>
+                        <a class="dropdown-item" href="#">Vrienden zoeken</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
                     </div>
                 </li>
             @else

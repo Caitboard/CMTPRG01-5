@@ -39,7 +39,7 @@ class MovieController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'date' => 'required|date|before:tomorrow',
-            'grade' => 'required|digits_between:1,11',
+            'grade' => 'required|integer|between:1,10',
             'review' => 'max:1000|sometimes',
         ]);
         $title = $request['title'];
