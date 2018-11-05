@@ -25,9 +25,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('dashboard');
-    }
+        $movies = Movie::all();
 
+        return view('dashboard', ['movies' => $movies]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -52,10 +53,13 @@ class MovieController extends Controller
         $movie->date = $date;
         $movie->grade = $grade;
         $movie->review = $review;
+        $message = 'Er is iets fout gegaan';
 
-        $request->user()->movies()->save($movie);
+        if ($request->user()->movies()->save($movie)) {
+            $message = 'Film toegevoegd!';
+        }
 
-        return redirect()->route('movies.show', $movie->id);
+        return redirect()->route('dashboard')->with(['message' => $message]);
 
     }
 

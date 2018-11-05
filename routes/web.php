@@ -26,7 +26,7 @@ Route::post('/signin', [
 ]);
 
 Route::get('/dashboard', [
-    'uses' => 'UserController@getDashboard',
+    'uses' => 'MovieController@create',
     'as' => 'dashboard'
 ])->middleware('auth');
 ;

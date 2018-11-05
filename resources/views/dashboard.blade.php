@@ -8,17 +8,7 @@
 @endsection
 
 @section('content')
-    @if(count($errors) > 0)
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    @endif
+@include('includes.validation-messages')
     <section class="row new-movie">
         <div class="col-md-6 col-md-offset-3">
             <header>
@@ -56,33 +46,20 @@
     <section class="row movies">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>Welke films hebben je vrienden bekeken?</h3></header>
-            <article class="movie">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur atque autem deserunt dolor
-                    dolorem eius hic laborum laudantium mollitia nostrum numquam optio, possimus quae quam, quia
-                    quibusdam quis sunt?</p>
-                <div class="info">Posted by x on x-x-x</div>
-                <div class="interaction">
-                    <a href="#">Ik wil deze film ook zien!</a> |
-                    <a href="#">Bekijken</a> |
-                    <a href="#">Edit</a> |
-                    <a href="#">Delete</a>
-                </div>
-            </article>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-            <header><h3>Welke films hebben je vrienden bekeken?</h3></header>
-            <article class="post">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur atque autem deserunt dolor
-                    dolorem eius hic laborum laudantium mollitia nostrum numquam optio, possimus quae quam, quia
-                    quibusdam quis sunt?</p>
-                <div class="info">Posted by x on x-x-x</div>
-                <div class="interaction">
-                    <a href="#">Ik wil deze film ook zien!</a> |
-                    <a href="#">Bekijken</a> |
-                    <a href="#">Edit</a> |
-                    <a href="#">Delete</a>
-                </div>
-            </article>
+            @foreach($movies as $movie)
+                <article class="movie">
+                    <p> {{ $movie->user->first_name }} heeft de film "{{ $movie->title }}" bekeken. <br>
+                        {{ $movie->user->first_name }} geeft deze film een {{ $movie->grade }}
+                    </p>
+                    <div class="info">Posted by {{ $movie->user->first_name }} on {{ $movie->created_at }}</div>
+                    <div class="interaction">
+                        <a href="#">Ik wil deze film ook zien!</a> |
+                        <a href="#">Bekijken</a> |
+                        <a href="#">Edit</a> |
+                        <a href="#">Delete</a>
+                    </div>
+                </article>
+            @endforeach
         </div>
     </section>
 
