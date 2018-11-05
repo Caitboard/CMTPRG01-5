@@ -45,7 +45,7 @@ class UserController extends Controller
     public function postSignIn(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 //      Checking if the login fields aren't empty
@@ -53,7 +53,7 @@ class UserController extends Controller
        if ( Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
            return redirect()->route('dashboard');
        }
-       return redirect()->back();
+       return redirect()->back()->withErrors('Login failed');
 //       If the login in successful we redirect to the dashboard
 //       if it's not, we go back to the welcome page, not logged in
     }
