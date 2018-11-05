@@ -27,8 +27,8 @@ Route::post('/signin', [
 
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
-    'as' => 'dashboard'])
-//])->middleware('auth');
+    'as' => 'dashboard'
+])->middleware('auth');
 ;
 
 Route::resource('movies', 'MovieController');
