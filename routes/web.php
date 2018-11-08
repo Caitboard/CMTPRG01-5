@@ -29,7 +29,12 @@ Route::get('/dashboard', [
     'uses' => 'MovieController@create',
     'as' => 'dashboard'
 ])->middleware('auth');
-;
+
+Route::get('/userpage', [
+    'uses' => 'MovieController@index',
+    'as' => 'userpage'
+])->middleware('auth');
+
 
 Route::resource('movies', 'MovieController');
 //Makes a route for every part of CRUD in the MovieController

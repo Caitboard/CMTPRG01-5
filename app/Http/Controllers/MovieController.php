@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Collective\Html;
+use Collective\Form;
+
 
 class MovieController extends Controller
 {
@@ -15,7 +18,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $movies = Movie::all();
+        return view('pages.userpage', ['movies' => $movies]);
     }
 
     /**
@@ -26,7 +30,6 @@ class MovieController extends Controller
     public function create()
     {
         $movies = Movie::all();
-
         return view('dashboard', ['movies' => $movies]);
     }
     /**
@@ -71,18 +74,19 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie = Movie::find($id);
+        return view('movies.show')->with('movie', $movie);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $movie = Movie::find($id);
+        return view('movies.edit')->with('movie', $movie);
     }
 
     /**
@@ -105,7 +109,7 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 
 
