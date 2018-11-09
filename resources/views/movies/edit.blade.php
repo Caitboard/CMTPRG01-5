@@ -5,19 +5,39 @@
 @endsection
 
 @section('content')
+    @include('includes.validation-messages')
     <div class="row">
-        {!!  Form::model() !!}
+        {{  Form::model($movie, ['route' => ['movies.update', $movie->id], 'method' => 'PUT']) }}
+        {{--This page is the same as show, except it's editable, so we insert our form here and bind it to our model--}}
+        {{--Then we use method PUT to update our database--}}
         <div class="col-md-8">
-            <h1>{{ $movie->title }}</h1>
-            <p>{{ $movie->review }}</p>
-            Bekeken op {{ $movie->date }}. <br>
-            Je hebt deze film een {{ $movie->grade }} gegeven.
+            <div class="form-group">
+            {{ Form::label('title', 'Titel') }}
+            {{ Form::text('title', null, ['class' => 'form-control']) }}
+            {{--<h1>{{ $movie->title }}</h1>--}}
+            </div>
+            <div class="form-group">
+            {{ Form::label('review', 'Review') }}
+            {{ Form::textarea('review', null, ['class' => 'form-control']) }}
+            {{--<p>{{ $movie->review }}</p>--}}
+            </div>
+            <div class="form-group">
+            {{ Form::label('date', 'Bekeken op') }}
+            {{ Form::date('date', null, ['class' => 'form-control']) }}
+            {{--Bekeken op {{ $movie->date }}. <br>--}}
+            </div>
+            <div class="form-group">
+            {{ Form::label('grade', 'Je gaf de film een:') }}
+            {{ Form::number('grade', null, ['class' => 'form-control']) }}
+            {{--Je hebt deze film een {{ $movie->grade }} gegeven.--}}
+            </div>
         </div>
         <div class="col-md-4">
             <a href=" {{ route('movies.show', $movie->id) }}" class="btn btn-danger btn-sm">Cancel</a>
             |
-            <a href=" {{ route('movies.update', $movie->id) }}" class="btn btn-success btn-sm">Save</a>
+            {{ Form::submit('Opslaan', ['class' => 'btn btn-success btn-sm']) }}
+
         </div>
-        {!!  Form::close() !!}
+        {{  Form::close() }}
     </div>
 @endsection

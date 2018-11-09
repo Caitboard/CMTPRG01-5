@@ -98,7 +98,27 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'date' => 'required|date|before:tomorrow',
+            'grade' => 'required|integer|between:1,10',
+            'review' => 'max:1000|sometimes',
+        ]);
+
+        $movie = Movie::find($id);
+        $movie->title = $request->input('title');
+        $movie->date = $request->input('date');
+        $movie->grade = $request->input('grade');
+        $movie->review = $request->input('review');
+
+        $message = 'Er is iets fout gegaan';
+//        $movie->save();
+
+        if ($request->user()->movies()->save($movie)) {
+            $message = 'Review gewijzigd!';
+        }
+
+        return redirect()->route('movies.show', $movie->id)->with(['message' => $message]);
     }
 
     /**

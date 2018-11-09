@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('includes.validation-messages')
     <div class="row">
         <div class="col-md-8">
             <h1>{{ $movie->title }}</h1>
