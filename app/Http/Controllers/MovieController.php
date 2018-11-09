@@ -112,7 +112,6 @@ class MovieController extends Controller
         $movie->review = $request->input('review');
 
         $message = 'Er is iets fout gegaan';
-//        $movie->save();
 
         if ($request->user()->movies()->save($movie)) {
             $message = 'Review gewijzigd!';
@@ -129,7 +128,13 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-
+        $movie = Movie::find($id);
+        $message = 'Er is iets misgegaan!';
+        if($movie->delete()) {
+            $message = 'De film is uit je lijst verwijderd';
+        }
+//        $movie->delete();
+        return redirect()->route('userpage')->with(['message' => $message]);
     }
 
 
