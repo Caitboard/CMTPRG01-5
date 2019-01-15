@@ -11,7 +11,7 @@
             <h1>{{ $movie->title }}</h1>
             <p>{{ $movie->review }}</p>
             Bekeken op {{ $movie->date }}. <br>
-            Je hebt deze film een {{ $movie->grade }} gegeven.
+            {{ Auth::user()->first_name }} heeft deze film een {{ $movie->grade }} gegeven.
         </div>
         <div class="col-md-4">
             <a href=" {{ route('movies.edit', $movie->id) }}" class="btn btn-info btn-sm">edit</a>

@@ -54,9 +54,12 @@
                     <div class="info">Posted by {{ $movie->user->first_name }} on {{ $movie->created_at }}</div>
                     <div class="interaction">
                         <a href="#">Ik wil deze film ook zien!</a> |
-                        <a href="#">Bekijken</a> |
-                        <a href="#">Edit</a> |
-                        <a href="#">Delete</a>
+                        <a href="{{ route('movies.show', $movie->id) }}">Bekijken</a>
+                        @if(Auth::user() == $movie->user)
+                            |
+                            <a href="{{ route('movies.edit', $movie->id) }}">Edit</a> |
+                            <a href="{{ route('movies.destroy', $movie->id) }}">Delete</a>
+                        @endif
                     </div>
                 </article>
             @endforeach

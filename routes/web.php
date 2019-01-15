@@ -36,8 +36,12 @@ Route::get('/userpage', [
 ])->middleware('auth');
 
 
-Route::resource('movies', 'MovieController');
+Route::resource('movies', 'MovieController')->middleware('auth');
 //Makes a route for every part of CRUD in the MovieController
 
+Route::resource('queries', 'QueryController');
+
+Route::get('movie/search', 'MovieController@search')->name('movies.search');
+//Searchquery for searchmovie
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Collective\Html;
 use Collective\Form;
-
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -29,7 +29,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        $movies = Movie::all();
+        $movies = Movie::latest()->get();
         return view('dashboard', ['movies' => $movies]);
     }
     /**
@@ -85,7 +85,11 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
+
         $movie = Movie::find($id);
+        if(Auth::user() != $movie->user) {
+            return redirect()->back();
+        }
         return view('movies.edit')->with('movie', $movie);
     }
 
@@ -129,13 +133,25 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
+        if(Auth::user() != $movie->user) {
+            return redirect()->back();
+        }
         $message = 'Er is iets misgegaan!';
         if($movie->delete()) {
             $message = 'De film is uit je lijst verwijderd';
         }
-//        $movie->delete();
         return redirect()->route('userpage')->with(['message' => $message]);
     }
 
+    public function search(Request $request)
+    {
+        // Gets the query string from our form submission
+        $query = $request->input('search');
+        // Returns an array of articles that have the query string located somewhere within
+        // our articles titles. Paginates them so we can break up lots of search results.
+        $articles = Movie::where('title', 'LIKE', '%' . $query . '%' )->get();
+        // returns a view and passes the view the list of articles and the original query.
+        return view('movies.search', compact('articles', 'query'));
+    }
 
 }

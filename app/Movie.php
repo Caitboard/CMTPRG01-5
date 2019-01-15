@@ -9,6 +9,6 @@ class Movie extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
-//        This post belongs to only one user, can't have multiple users
+//        This movie belongs to only one user, can't have multiple users
     }
 }
