@@ -145,13 +145,14 @@ class MovieController extends Controller
 
     public function search(Request $request)
     {
+        $error = "Geen film gevonden";
         // Gets the query string from our form submission
         $query = $request->input('search');
         // Returns an array of articles that have the query string located somewhere within
         // our articles titles. Paginates them so we can break up lots of search results.
-        $articles = Movie::where('title', 'LIKE', '%' . $query . '%' )->get();
+        $articles = Movie::where('title', 'LIKE', '%' . $query . '%' )->orWhere('review','LIKE', '%' . $query . '%' )->get();
         // returns a view and passes the view the list of articles and the original query.
-        return view('movies.search', compact('articles', 'query'));
+        return view('movies.search', compact('articles', 'query', 'error'));
     }
 
 }

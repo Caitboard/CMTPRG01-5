@@ -44,4 +44,18 @@ Route::resource('queries', 'QueryController');
 Route::get('movie/search', 'MovieController@search')->name('movies.search');
 //Searchquery for searchmovie
 
+Route::get('/account', [
+    'uses' => 'UserController@getAccount',
+    'as' => 'account'
+]);
+
+Route::post('/updateaccount', [
+    'uses' => 'UserController@saveAccount',
+    'as' => 'account.save'
+]);
+
+Route::get('/userimage/{filename}', [
+    'uses' => 'UserController@getUserImage',
+    'as' => 'account.image'
+]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

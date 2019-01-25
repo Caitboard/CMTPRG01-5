@@ -15,7 +15,8 @@ Hi {{ Auth::user()->first_name }}
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 <a class="dropdown-item" href="{{ route('dashboard') }}">Nieuwe film toevoegen</a>
-<a class="dropdown-item" href="{{ route('userpage') }}">Mijn pagina</a>
+<a class="dropdown-item" href="{{ route('userpage') }}">Mijn films</a>
+<a class="dropdown-item" href="{{ route('account') }}">Mijn account</a>
 <a class="dropdown-item" href="#">Vrienden zoeken</a>
 <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
 </div>

@@ -6,6 +6,10 @@ use App\User;
 use Illuminate\Http\Request;
 //Gain access to the fields in the views with request
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+use Faker\Provider\Image;
 
 
 class UserController extends Controller
@@ -52,5 +56,37 @@ class UserController extends Controller
        return redirect()->back()->withErrors('Login failed');
 //       If the login in successful we redirect to the dashboard
 //       if it's not, we go back to the welcome page, not logged in
+    }
+
+    public function getAccount(){
+        return view('pages/account', ['user' => Auth::user()]);
+    }
+
+    public function saveAccount(Request $request){
+//        Updating the users first name
+        $this->validate($request, [
+            '$first_name' => 'required'|'max:50',
+        ]);
+        $user = Auth::user();
+        $user->first_name = $request['first_name'];
+        $user->update();
+//        Updating the users avatar
+        $this->validate($request, [
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = $name = time() . '.' . $file->getClientOriginalExtension(); //get extension in the file (jpg, png etc)
+            if ($file) {
+                $location = public_path('img/' . $filename); //set the location for the image (public/img)
+                Image::make($file)->resize(400, 400)->save($location);
+            }
+        }
+        return redirect()->route('account');
+    }
+
+    public function getUserImage($filename){
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
 }
