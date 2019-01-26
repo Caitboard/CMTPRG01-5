@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Collective\Html;
 use Collective\Form;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class MovieController extends Controller
 {
@@ -45,6 +46,7 @@ class MovieController extends Controller
             'date' => 'required|date|before:tomorrow',
             'grade' => 'required|integer|between:1,10',
             'review' => 'max:1000|sometimes',
+            'featured_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $title = $request['title'];
         $date = $request['date'];
@@ -57,6 +59,13 @@ class MovieController extends Controller
         $movie->grade = $grade;
         $movie->review = $review;
         $message = 'Er is iets fout gegaan';
+
+        if ($request->hasFile('featured_image')) {
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(400,400)->save(public_path('/uploads/featured_images/' . $filename));
+            $movie->featured_image = $filename; //set image column equal to $filename
+        }
 
         if ($request->user()->movies()->save($movie)) {
             $message = 'Film toegevoegd!';
@@ -107,6 +116,7 @@ class MovieController extends Controller
             'date' => 'required|date|before:tomorrow',
             'grade' => 'required|integer|between:1,10',
             'review' => 'max:1000|sometimes',
+            'featured_image' => 'image|sometimes|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $movie = Movie::find($id);
@@ -114,6 +124,19 @@ class MovieController extends Controller
         $movie->date = $request->input('date');
         $movie->grade = $request->input('grade');
         $movie->review = $request->input('review');
+
+        if ($request->hasFile('featured_image')) {
+            //add new photo
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/' . $filename);
+            Image::make($image)->resize(400, 400)->save($location);
+            $oldFilename = $movie->image;
+            //update the database
+            $movie->image = $filename;
+            //delete old photo
+            Storage::delete($oldFilename);
+        }
 
         $message = 'Er is iets fout gegaan';
 
@@ -133,6 +156,7 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
+        Storage::delete($movie->image);
         if(Auth::user() != $movie->user) {
             return redirect()->back();
         }

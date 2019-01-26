@@ -13,7 +13,7 @@
         <div class="col-md-6 col-md-offset-3">
             <header>
                 <h3>Heb je een film bekeken?</h3>
-                <form action="{{ route('movies.store') }}" method="post">
+                <form action="{{ route('movies.store') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Titel</label>
                         <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="title" id="title" value="{{ Request::old('title') }}">
@@ -36,6 +36,10 @@
                     <div class="form-group">
                         <label for="review">Schrijf een review(optioneel)</label>
                         <textarea class="form-control {{ $errors->has('review') ? 'is-invalid' : '' }}" name="review" id="review" value="{{ Request::old('review') }}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="featured_image">Upload een afbeelding van de film(optioneel)</label>
+                        <input type="file" name="featured_image" class="form-control" id="featured_image">
                     </div>
                     <button type="submit" class="btn btn-primary">Film toevoegen</button>
                     {{ csrf_field() }}
