@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
-use Faker\Provider\Image;
+use Image;
 
 
 class UserController extends Controller
@@ -72,21 +72,17 @@ class UserController extends Controller
         $user->update();
 //        Updating the users avatar
         $this->validate($request, [
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $name = time() . '.' . $file->getClientOriginalExtension(); //get extension in the file (jpg, png etc)
-            if ($file) {
-                $location = public_path('img/' . $filename); //set the location for the image (public/img)
-                Image::make($file)->resize(400, 400)->save($location);
-            }
+
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/' . $filename));
+            $user->avatar = $filename;
+            $user->save();
         }
         return redirect()->route('account');
     }
 
-    public function getUserImage($filename){
-        $file = Storage::disk('local')->get($filename);
-        return new Response($file, 200);
-    }
 }

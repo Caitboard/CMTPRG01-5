@@ -54,8 +54,4 @@ Route::post('/updateaccount', [
     'as' => 'account.save'
 ]);
 
-Route::get('/userimage/{filename}', [
-    'uses' => 'UserController@getUserImage',
-    'as' => 'account.image'
-]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

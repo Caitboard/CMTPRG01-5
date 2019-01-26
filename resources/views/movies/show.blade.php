@@ -15,7 +15,6 @@
         </div>
         <div class="col-md-4">
             <a href=" {{ route('movies.edit', $movie->id) }}" class="btn btn-info btn-sm">edit</a>
-            |
             {{ Form::open(['route' => ['movies.destroy', $movie->id], 'method' => 'DELETE']) }}
             {{ Form::submit('delete', ['class' => 'btn btn-danger btn-sm']) }}
             {{ Form::close() }}
