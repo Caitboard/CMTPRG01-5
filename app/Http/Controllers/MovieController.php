@@ -126,18 +126,14 @@ class MovieController extends Controller
         $movie->grade = $request->input('grade');
         $movie->review = $request->input('review');
 
-        if ($request->hasFile('featured_image')) {
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(400,400)->save(public_path('/uploads/featured_images/' . $filename));
-            $movie->featured_image = $filename; //set image column equal to $filename
-        }
 
         if ($request->hasFile('featured_image')) {
             //add new photo
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(400, 400)->save(public_path('/uploads/featured_images/' . $filename));
+            Image::make($image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/uploads/featured_images/' . $filename));
             $oldFilename = $movie->image;
             //update the database
             $movie->featured_image = $filename;

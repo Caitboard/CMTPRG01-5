@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 {{ Form::label('featured_image', 'Filmafbeelding') }}
-                <img src="/uploads/featured_images/{{ $movie->featured_image }}"  height="300" width="300" alt="image_upload">
+                <img src="/uploads/featured_images/{{ $movie->featured_image }}"alt="image_upload">
                 {{ Form::file('featured_image', null, ['class' => 'form-control']) }}
             </div>
         </div>
