@@ -9,7 +9,6 @@
     <div class="row">
         <div class="col-md-8">
             <h1>{{ $movie->title }}</h1>
-            <h3>{{ $movie->category->genre }}</h3>
             <p>{{ $movie->review }}</p>
 
             Bekeken op {{ $movie->date }}. <br>
