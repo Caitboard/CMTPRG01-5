@@ -36,10 +36,10 @@
                         <label for="grade">Welk cijfer geef je de film?</label>
                         <input class="form-control {{ $errors->has('grade') ? 'is-invalid' : '' }}" type="number" name="grade" id="grade" value="{{ Request::old('grade') }}">
                     </div>
-                    <div class="form-group">
-                        <label for="genre">Welk genre heeft de film?</label>
-                        <input class="form-control {{ $errors->has('genre') ? 'is-invalid' : '' }}" type="text" name="genre" id="genre" value="{{ Request::old('genre') }}">
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="genre">Welk genre heeft de film?</label>--}}
+                        {{--<input class="form-control {{ $errors->has('genre') ? 'is-invalid' : '' }}" type="text" name="genre" id="genre" value="{{ Request::old('genre') }}">--}}
+                    {{--</div>--}}
                     <div class="form-group">
                         <label for="review">Schrijf een review(optioneel)</label>
                         <textarea class="form-control {{ $errors->has('review') ? 'is-invalid' : '' }}" name="review" id="review" value="{{ Request::old('review') }}"></textarea>

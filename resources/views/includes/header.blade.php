@@ -44,6 +44,7 @@
                             @can('isAdmin')
                             <li><a class="dropdown-item" href="{{ route('adminpage') }}">Admin pagina</a></li>
                             @endcan
+                            <li><a class="dropdown-item" href="#">Vrienden zoeken</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                         </ul>
                     </li>

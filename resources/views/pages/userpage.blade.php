@@ -13,7 +13,6 @@
                         <table class="table">
                         <tr>
                             <th>Titel</th>
-                            <th>Genre</th>
                             <th>Wijzigen</th>
                         </tr>
                         <h3>Deze films heb je al bekeken:</h3>
@@ -46,7 +45,6 @@
                                 @foreach($movies as $movie) @if(Auth::user() == $movie->user)
                                 <tr>
                                 <td><a href=" {{ route('movies.show', $movie->id) }}">{{ $movie->title }}</a></td>
-                                    <td>{{ $movie->category->genre }}</td>
                                     <td>
                                         <a href=" {{ route('movies.edit', $movie->id) }}" class="btn btn-default btn-sm">edit</a>
                                         |

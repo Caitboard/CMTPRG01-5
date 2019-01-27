@@ -15,5 +15,4 @@ class PagesController extends Controller
     public function getSignUp() {
         return view('pages.signup');
     }
-
 }
