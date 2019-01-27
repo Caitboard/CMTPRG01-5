@@ -32,7 +32,7 @@
                                                     Verwijder admin role
                                                 @endif
                                             </button></a></td>
-                                    <td><a href="#" class="btn btn-default btn-sm">Delete user</a></td>
+                                    <td><a href="{{ route('user.delete', $user->id) }}" class="btn btn-default btn-sm">Delete user</a></td>
                                 </tr>
                             @endforeach
                         </table>

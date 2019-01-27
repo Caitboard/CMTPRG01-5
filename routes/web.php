@@ -56,5 +56,10 @@ Route::post('/updateaccount', [
 ]);
 
 Route::get('user/admin-update/{id}', ['as' => 'user.save', 'uses' => 'AdminController@update']);
+Route::get('user/admin-delete/{id}', ['as' => 'user.delete', 'uses' => 'AdminController@destroy']);
 
+Route::get('/category/{category}', [
+    'uses' => 'MovieController@category',
+    'as' => 'category',
+]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

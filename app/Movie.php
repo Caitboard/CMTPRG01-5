@@ -11,4 +11,9 @@ class Movie extends Model
         return $this->belongsTo('App\User');
 //        This movie belongs to only one user, can't have multiple users
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 }

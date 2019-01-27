@@ -40,7 +40,7 @@
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Nieuwe film toevoegen</a></li>
                             <li><a class="dropdown-item" href="{{ route('userpage') }}">Mijn films</a></li>
                             <li><a class="dropdown-item" href="{{ route('account') }}">Mijn account</a></li>
-                            <li><a class="dropdown-item" href="#">Vrienden zoeken</a></li>
+                            {{--<li><a class="dropdown-item" href="#">Vrienden zoeken</a></li>--}}
                             @can('isAdmin')
                             <li><a class="dropdown-item" href="{{ route('adminpage') }}">Admin pagina</a></li>
                             @endcan

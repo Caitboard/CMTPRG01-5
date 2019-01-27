@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+    Dashboard
+@endsection
 
 @section('stylesheets')
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -32,6 +35,10 @@
                     <div class="form-group">
                         <label for="grade">Welk cijfer geef je de film?</label>
                         <input class="form-control {{ $errors->has('grade') ? 'is-invalid' : '' }}" type="number" name="grade" id="grade" value="{{ Request::old('grade') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Welk genre heeft de film?</label>
+                        <input class="form-control {{ $errors->has('genre') ? 'is-invalid' : '' }}" type="text" name="genre" id="genre" value="{{ Request::old('genre') }}">
                     </div>
                     <div class="form-group">
                         <label for="review">Schrijf een review(optioneel)</label>

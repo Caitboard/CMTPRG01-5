@@ -18,6 +18,9 @@ class AdminController extends Controller
     }
 
     public function update($id) {
+        if(!Gate::allows('isAdmin')){
+            abort(404, "Deze pagina is niet toegankelijk voor jou");
+        }
         $user = User::findOrFail($id);
         if($user->admin == 1){
             $user->admin = 0;
@@ -29,4 +32,13 @@ class AdminController extends Controller
         return redirect()->route('adminpage');
     }
 
+    public function destroy($id){
+        if(!Gate::allows('isAdmin')){
+            abort(404, "Deze pagina is niet toegankelijk voor jou");
+        }
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('adminpage');
+    }
 }

@@ -13,14 +13,12 @@
                         <table class="table">
                         <tr>
                             <th>Titel</th>
+                            <th>Genre</th>
                             <th>Wijzigen</th>
                         </tr>
                         <h3>Deze films heb je al bekeken:</h3>
                             <div class="col-md-4" style="float:right">
-                                {{--<form action="#" method="get" id="searchmovie">--}}
-                                {{--<input class="form-control" type="text" placeholder="Search" aria-label="Search" style="margin: 6px">--}}
-                                    {{--<script>document.getElementById("searchmovie").submit()</script>--}}
-                                {{--</form>--}}
+                                {{--Searchbox, searches through the title and the body--}}
                                 {{ Form::open(['route' => ['movies.search'], 'method' => 'GET', 'class'=>'form navbar-form navbar-right searchform']) }}
                                 {{ method_field('get') }}
                                 {{ Form::text('search', null,
@@ -33,10 +31,22 @@
                                     array('class'=>'btn btn-primary',
                                           'style'=>'position: absolute; left: -9999px')) }}
                                 {{ Form::close() }}
+
+                                {{--<div class="btn-group dropright">--}}
+                                    {{--<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                                        {{--Select genre--}}
+                                    {{--</button>--}}
+                                    {{--<div class="dropdown-menu">--}}
+                                        {{--@foreach($categories as $category)--}}
+                                            {{--<li><a href="{{ route('category', $category->id) }}">{{ $category->genre }}</a> </li>--}}
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                             </div>
                                 @foreach($movies as $movie) @if(Auth::user() == $movie->user)
                                 <tr>
                                 <td><a href=" {{ route('movies.show', $movie->id) }}">{{ $movie->title }}</a></td>
+                                    <td>{{ $movie->category->genre }}</td>
                                     <td>
                                         <a href=" {{ route('movies.edit', $movie->id) }}" class="btn btn-default btn-sm">edit</a>
                                         |

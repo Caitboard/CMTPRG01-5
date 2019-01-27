@@ -27,6 +27,10 @@
             {{--Bekeken op {{ $movie->date }}. <br>--}}
             </div>
             <div class="form-group">
+                {{ Form::label('genre', 'Genre') }}
+                {{ Form::text('genre', null, ['class' => 'form-control']) }}
+            </div>
+            <div class="form-group">
             {{ Form::label('grade', 'Je gaf de film een:') }}
             {{ Form::number('grade', null, ['class' => 'form-control']) }}
             {{--Je hebt deze film een {{ $movie->grade }} gegeven.--}}

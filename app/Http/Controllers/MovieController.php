@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +20,9 @@ class MovieController extends Controller
      */
     public function index()
     {
+        $categories = Category::orderBy('genre', 'asc')->get();
         $movies = Movie::all();
-        return view('pages.userpage', ['movies' => $movies]);
+        return view('pages.userpage', compact('movies', 'categories'));
     }
 
     /**
@@ -179,4 +181,18 @@ class MovieController extends Controller
         return view('movies.search', compact('articles', 'query', 'error'));
     }
 
+    public function category($id)
+    {
+        $category_id = Category::find($id);
+        $movies = Movie::where('category_id', $category_id)->find($id);
+        $categories = Category::pluck('id');
+        return view('pages.category', compact('movies', 'categories'));
+//        $movie = Movie::find($id);
+//        return view('pages.category')->with('movie', $movie);
+//        $category = Category::find($id);
+//        $movies = Movie::where('category_id', 'LIKE', '%' . $category . '%')->get();
+////        $categories = Category::orderBy('genre', 'asc')->get();
+////        $movies = Movie::all();
+//        return view('pages.category', compact('category', 'movies'));
+    }
 }
