@@ -13,4 +13,9 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany('App\Movie');
     }
+
+    public function roles ()
+    {
+        return $this->belongsToMany('App\Role');
+    }
 }

@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@getWelcome')->name('login');
 Route::get('/signin', 'PagesController@getSignIn');
 Route::get('/signup', 'PagesController@getSignUp');
+Route::get('/adminpage', 'AdminController@index')->name('adminpage');
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
@@ -53,5 +54,7 @@ Route::post('/updateaccount', [
     'uses' => 'UserController@saveAccount',
     'as' => 'account.save'
 ]);
+
+Route::get('user/admin-update/{id}', ['as' => 'user.save', 'uses' => 'AdminController@update']);
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

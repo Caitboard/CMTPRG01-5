@@ -27,8 +27,8 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
 
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/signin') }}">Login</a></li>
+                    <li><a href="{{ url('/signup') }}">Register</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
@@ -41,6 +41,9 @@
                             <li><a class="dropdown-item" href="{{ route('userpage') }}">Mijn films</a></li>
                             <li><a class="dropdown-item" href="{{ route('account') }}">Mijn account</a></li>
                             <li><a class="dropdown-item" href="#">Vrienden zoeken</a></li>
+                            @can('isAdmin')
+                            <li><a class="dropdown-item" href="{{ route('adminpage') }}">Admin pagina</a></li>
+                            @endcan
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                         </ul>
                     </li>
