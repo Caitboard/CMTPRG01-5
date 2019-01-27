@@ -126,14 +126,20 @@ class MovieController extends Controller
         $movie->review = $request->input('review');
 
         if ($request->hasFile('featured_image')) {
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(400,400)->save(public_path('/uploads/featured_images/' . $filename));
+            $movie->featured_image = $filename; //set image column equal to $filename
+        }
+
+        if ($request->hasFile('featured_image')) {
             //add new photo
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('img/' . $filename);
-            Image::make($image)->resize(400, 400)->save($location);
+            Image::make($image)->resize(400, 400)->save(public_path('/uploads/featured_images/' . $filename));
             $oldFilename = $movie->image;
             //update the database
-            $movie->image = $filename;
+            $movie->featured_image = $filename;
             //delete old photo
             Storage::delete($oldFilename);
         }
@@ -156,7 +162,7 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
-        Storage::delete($movie->image);
+        Storage::delete($movie->featured_image);
         if(Auth::user() != $movie->user) {
             return redirect()->back();
         }

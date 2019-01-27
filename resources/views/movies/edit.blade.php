@@ -7,7 +7,7 @@
 @section('content')
     @include('includes.validation-messages')
     <div class="row">
-        {{  Form::model($movie, ['route' => ['movies.update', $movie->id], 'method' => 'PUT']) }}
+        {{  Form::model($movie, ['route' => ['movies.update', $movie->id], 'method' => 'PUT', 'files' => true]) }}
         {{--This page is the same as show, except it's editable, so we insert our form here and bind it to our model--}}
         {{--Then we use method PUT to update our database--}}
         <div class="col-md-8">
@@ -30,6 +30,11 @@
             {{ Form::label('grade', 'Je gaf de film een:') }}
             {{ Form::number('grade', null, ['class' => 'form-control']) }}
             {{--Je hebt deze film een {{ $movie->grade }} gegeven.--}}
+            </div>
+            <div class="form-group">
+                {{ Form::label('featured_image', 'Filmafbeelding') }}
+                <img src="/uploads/featured_images/{{ $movie->featured_image }}"  height="300" width="300" alt="image_upload">
+                {{ Form::file('featured_image', null, ['class' => 'form-control']) }}
             </div>
         </div>
         <div class="col-md-4">
